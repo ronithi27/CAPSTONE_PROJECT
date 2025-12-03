@@ -20,11 +20,32 @@ const app = express();
 // Connect to database
 await connectDB();
 
-// Middleware
-const clientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').replace(/\/$/, '');
+// Middleware - CORS configuration
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://capstone-project-1-sr43.onrender.com',
+    process.env.CLIENT_URL
+].filter(Boolean).map(url => url.replace(/\/$/, '')); // Remove trailing slashes
+
 app.use(cors({
-    origin: clientUrl,
-    credentials: true
+    origin: function(origin, callback) {
+        // Allow requests with no origin (mobile apps, curl, etc.)
+        if (!origin) return callback(null, true);
+        
+        // Remove trailing slash from origin for comparison
+        const normalizedOrigin = origin.replace(/\/$/, '');
+        
+        if (allowedOrigins.includes(normalizedOrigin)) {
+            callback(null, true);
+        } else {
+            console.log('CORS blocked origin:', origin);
+            callback(null, true); // Allow all for now to debug
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'x-user-id']
 }));
 app.use(express.json());
 
