@@ -3,7 +3,7 @@ import { dummyConnectionsData } from '../asset/assets'
 import { connectionAPI } from '../api'
 import { useApp } from '../context/AppContext'
 import Loading from '../components/Loading'
-import UserCard from '../components/userCard'
+import UserCard from '../components/UserCard'
 import { Users, UserPlus, UserCheck } from 'lucide-react'
 
 const Connections = () => {
