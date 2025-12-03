@@ -21,8 +21,9 @@ const app = express();
 await connectDB();
 
 // Middleware
+const clientUrl = (process.env.CLIENT_URL || 'http://localhost:5173').replace(/\/$/, '');
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: clientUrl,
     credentials: true
 }));
 app.use(express.json());
