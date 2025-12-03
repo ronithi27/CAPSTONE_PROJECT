@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { dummyConnectionsData } from '../asset/assets'
 import { Search } from 'lucide-react'
 import Loading from '../components/Loading'
-import UserCard from '../components/userCard'
+import UserCard from '../components/UserCard'
 import { userAPI } from '../api'
 import { useApp } from '../context/AppContext'
 

@@ -5,7 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 import UserProfileInfo from '../components/UserProfileInfo';
 import PostCard from '../components/PostCard';
 import moment from 'moment';
-import ProfileModal from '../components/profileModal';
+import ProfileModal from '../components/ProfileModal';
 import { userAPI, postAPI } from '../api';
 import { useApp } from '../context/AppContext';
 
